@@ -11,7 +11,7 @@ from .forms import *
 from django.contrib.auth import authenticate, login, logout
 
 
-# from django.contrib import messages
+from django.contrib import messages
 # from .models import *
 # from django.contrib.auth.decorators import login_required
 # from django.core.paginator import Paginator
@@ -40,26 +40,22 @@ def customer_signup(request):
 # Function for customer login
 
 # @login_register_check
-# def customer_login(request):
-#     login_form = LoginForm()
-#     if request.method == "POST":
-#         user_name = request.POST.get('username')
-#         user_password = request.POST.get('password')
-#         user = authenticate(username=user_name, password=user_password)
-#         if user is not None:
-#             user_confirmation = User.objects.get(username=user_name)
-#             if user_confirmation.is_active:
-#                 login(request, user)
-#                 return redirect('dashboard')
-#             else:
-#                 messages.error(request, "Please verify your account !!")
-#         else:
-#             messages.error(request, "incorrect Username or Password")
-#
-#     context = {
-#         'form': login_form
-#     }
-#     return render(request, 'customer/login.html', context)
+def customer_login(request):
+    login_form = LoginForm()
+    if request.method == "POST":
+        user_name = request.POST.get('username')
+        user_password = request.POST.get('password')
+        user = authenticate(username=user_name, password=user_password)
+        if user is not None:
+            login(request, user)
+            return redirect('signup')
+        else:
+            messages.error(request, "incorrect Username or Password")
+
+    context = {
+        'form': login_form
+    }
+    return render(request, 'registration/login.html', context)
 
 
 # Function for customer logout
