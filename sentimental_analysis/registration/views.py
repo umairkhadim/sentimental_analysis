@@ -9,7 +9,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 
 from .forms import *
 from django.contrib.auth import authenticate, login, logout
-
+# from sentimental_analysis.home import urls
 
 from django.contrib import messages
 # from .models import *
@@ -48,7 +48,7 @@ def customer_login(request):
         user = authenticate(username=user_name, password=user_password)
         if user is not None:
             login(request, user)
-            return redirect('signup')
+            return render(request, 'home/dashboard.html', )
         else:
             messages.error(request, "incorrect Username or Password")
 
