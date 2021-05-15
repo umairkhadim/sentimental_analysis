@@ -25,4 +25,4 @@ def customer_dashboard(request):
         # "table": items_submission,
 
     }
-    return render(request, 'customer/dashboard.html', context)
+    return render(request, 'home/dashboard.html', context)

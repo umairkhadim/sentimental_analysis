@@ -4,6 +4,6 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-                  path('dashboard', customer_dashboard, name="dashboard"),
+                  path('', customer_dashboard, name="dashboard"),
 
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

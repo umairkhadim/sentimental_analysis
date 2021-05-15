@@ -31,6 +31,7 @@ AUTH_USER_MODEL = "registration.User"
 
 INSTALLED_APPS = [
     'registration',
+    'home',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

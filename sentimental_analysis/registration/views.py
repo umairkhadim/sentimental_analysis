@@ -48,7 +48,7 @@ def customer_login(request):
         user = authenticate(username=user_name, password=user_password)
         if user is not None:
             login(request, user)
-            return render(request, 'home/dashboard.html', )
+            return redirect('dashboard')
         else:
             messages.error(request, "incorrect Username or Password")
 
