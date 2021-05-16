@@ -64,3 +64,4 @@ def customer_login(request):
 def customer_logout(request):
     logout(request)
     return redirect('login')
+

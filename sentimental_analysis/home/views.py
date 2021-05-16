@@ -1,10 +1,14 @@
 from django.shortcuts import render
+from .models import *
 
 # Create your views here.
 
 
 # @login_required(login_url='login')
 def customer_dashboard(request):
+    products_obj = Product.objects.all()
+    for i in products_obj:
+        print(i.name)
     # reddit = praw.Reddit(client_id='ISnOA13qK99q4A',
     #                      client_secret='cEKVwb65zJJoejN6YphDRamyHycdHA',
     #                      user_agent='my user agent')
@@ -21,8 +25,12 @@ def customer_dashboard(request):
     # items_submission = ItemSubmissionDate.objects.filter(customer=request.user).order_by('-create_date')[:5]
     # sub_reddit = Tweets.objects.all()[:5]
     context = {
-        # 'sub_reddit': sub_reddit,
-        # "table": items_submission,
+
+        "products": products_obj,
 
     }
     return render(request, 'home/dashboard.html', context)
+
+def product_detail(request):
+    return render(request, 'home/product_detail.html')
+
