@@ -17,16 +17,17 @@ def customer_dashboard(request):
 def product_detail(request):
     product = request.GET.get('product')
     produc_obj = Product.objects.get(pk= product)
-    # try:
-    comments = Comment.objects.filter(product=produc_obj)  
-    comments_list = list()
-    for comment in comments:
-        comments_list.append(comment)
+    try:
+        comments = Comment.objects.filter(product=produc_obj)  
+        comments_list = list()
+        for comment in comments:
+            comments_list.append(comment)
 
-    res=outputPredict(comments_list)   
-    # except:
-    #     comments = None
-    #     res={}
+        res=outputPredict(comments_list)   
+    except:
+        comments = None
+        res={'positive':0,
+            'negative':0}
 
     print(res['positive'])
     context={
