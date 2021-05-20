@@ -12,7 +12,7 @@ class Product(models.Model):
 
 
 class Comment(models.Model): 
-    comment = models.CharField(max_length=500)
+    comment = models.CharField(max_length=500, null=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
 
     def __str__(self):

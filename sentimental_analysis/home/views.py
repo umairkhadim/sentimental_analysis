@@ -15,8 +15,17 @@ def customer_dashboard(request):
     return render(request, 'home/dashboard.html', context)
 
 def product_detail(request):
-    product = request.GET.get('product')
+
+    product = request.GET.get('product')  
     produc_obj = Product.objects.get(pk= product)
+         
+
+    if request.method == 'POST': 
+        # print(request.POST)
+        new_comment = request.POST.get('comment') 
+        comment_ = Comment(comment=new_comment, product=produc_obj) 
+        comment_.save() 
+          
     try:
         comments = Comment.objects.filter(product=produc_obj)  
         comments_list = list()
@@ -29,7 +38,7 @@ def product_detail(request):
         res={'positive':0,
             'negative':0}
 
-    print(res['positive'])
+
     context={
         'product' : produc_obj,
         'comments' : comments,

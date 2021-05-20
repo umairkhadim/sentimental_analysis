@@ -54,7 +54,7 @@
 <div class="container d-flex flex-row .flex-row mx-auto">
     <button type="button" class="btn btn-success">{{positive_comments}}</button>
     <button type="button" class="btn btn-danger">{{negative_comments}}</button>
-     
+
 </div>
 
 <section>
@@ -70,6 +70,23 @@
                     <p>{{comment.comment}}</p>
                 </div>
                 {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+
+            <div class="  ">
+                 
+                <form action={% url "product_detail" %}?product={{product.id}}  method="post">
+                    {% csrf_token %}
+                    <input placeholder='Enter your reviews here' type="text" name="comment" style="width: 500px; height: 50px;">
+                    <button type="submit" class='btn btn-light'>Comment</button>
+                </form>
             </div>
 
         </div>

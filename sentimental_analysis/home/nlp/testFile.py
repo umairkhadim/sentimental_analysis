@@ -22,8 +22,7 @@ def outputPredict(commentList):
     prediction = []
     posCount = 0
     commentCount = len(commentList)
-    for i in commentList:
-        print("Input String for prediction:", i)
+    for i in commentList: 
         vecResult = loaded_vec.transform([cleanText(i)])
         pred = modelLogistic.predict(vecResult)
         if pred[0] == 1:
