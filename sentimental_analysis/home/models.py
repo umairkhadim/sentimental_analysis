@@ -17,3 +17,10 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.comment
+
+class Rating(models.Model): 
+    rate_val = models.IntegerField(max_length=500, null=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.rate_val)

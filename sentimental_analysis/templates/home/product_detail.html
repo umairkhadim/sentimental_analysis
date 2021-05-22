@@ -47,13 +47,23 @@
         </div>
 
     </div>
+    
+</div>
+<div class=>
+    <div class="rating rating2">
+	<a href="#5" title="Give 5 stars" data-value="5">★</a>
+	<a href="#4" title="Give 4 stars" data-value="4">★</a>
+	<a href="#3" title="Give 3 stars" data-value="3">★</a>
+	<a href="#2" title="Give 2 stars" data-value="2">★</a>
+	<a href="#1" title="Give 1 star" data-value="1">★</a>
+    </div>
 </div>
 <hr>
 
 
 <div class="container d-flex flex-row .flex-row mx-auto">
-    <button type="button" class="btn btn-success">{{positive_comments}}</button>
-    <button type="button" class="btn btn-danger">{{negative_comments}}</button>
+    <button type="button" class="btn btn-success"><h5>{{positive_comments}}</h5></button>
+    <button type="button" class="btn btn-danger"><h5>{{negative_comments}}</h5></button>
 
 </div>
 
@@ -66,7 +76,7 @@
                 {% for comment in comments %}
                 <div class="comment mt-4 text-justify float-left"> <img src="https://i.imgur.com/CFpa3nK.jpg" alt=""
                         class="rounded-circle" width="40" height="40">
-                    <h4>Jhon Doe</h4> <span>- 20 October, 2018</span> <br>
+                    <h4>{{user}}</h4> <span>- 20 October, 2018</span> <br>
                     <p>{{comment.comment}}</p>
                 </div>
                 {% endfor %}
@@ -121,6 +131,20 @@
 
 
 
+</script>
+
+<script>
+$(".rating a").on('click', function(e){
+	let value = $(this).data('value');
+   $.ajax({
+      url: "{% url 'product_detail' %}",
+      type: 'GET',
+      data: {'rating': value, 'product': {{product.id}},},
+      success: function (d){
+       // some processing
+      }
+   })
+});
 </script>
 
 {% endblock %}

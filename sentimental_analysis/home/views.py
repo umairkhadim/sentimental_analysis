@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .models import *
-from  .nlp.testFile import *
+from  .nlp.testFile import * 
+from django.http import HttpResponse
+
 # Create your views here.
 
 
@@ -16,12 +18,20 @@ def customer_dashboard(request):
 
 def product_detail(request):
 
-    product = request.GET.get('product')  
+    product = request.GET.get('product')
+
+    if request.is_ajax(): 
+        rating = request.GET.get('rating')
+        produc_obj = Product.objects.get(pk= product)
+        new_rating_obj = Rating(rate_val=rating, product=produc_obj)
+        new_rating_obj.save()
+        return HttpResponse()
+
+      
     produc_obj = Product.objects.get(pk= product)
          
 
     if request.method == 'POST': 
-        # print(request.POST)
         new_comment = request.POST.get('comment') 
         comment_ = Comment(comment=new_comment, product=produc_obj) 
         comment_.save() 
